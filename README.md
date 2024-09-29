@@ -1,1 +1,71 @@
-# git-flows
+# git flow
+
+## Вветки git flow
+1. **`master`**:
+   - Хранит стабильную версию кода, которая всегда готова для релиза.
+   - После завершения релиза все изменения сливаются сюда.
+
+2. **`develop`**:
+   - Основная ветка для разработки.
+   - Содержит актуальную версию кода с последними изменениями и новыми функциями, которые могут быть нестабильными.
+   - Все фичи и исправления вливаются сюда.
+
+3. **`feature`-ветки** (фичи):
+   - Используются для разработки новой функциональности.
+   - Ответвляются от `develop`.
+   - После завершения разработки сливаются обратно в `develop`.
+   - Название веток: `feature/имя-функции`.
+
+4. **`release`-ветки** (релизы):
+   - Используются для подготовки нового релиза.
+   - Ответвляются от develop перед релизом.
+   - Сюда можно вносить только исправления багов или минимальные правки.
+   - После завершения добавляется тег релиза и код сливается в master и develop.
+   - Название веток: release/номер-релиза.
+
+5. **`hotfix`-ветки** (хотфиксы):
+   - Используются для исправления критических ошибок в стабильной версии (в master).
+   - Ответвляются от master.
+   - После исправления сливаются в master и develop.
+   - Название веток: hotfix/номер-патча.
+
+**Пример `git flow`**
+```mermaid
+  gitGraph
+   commit
+   branch develop
+   checkout develop
+   branch feature/project-setup
+   commit
+   checkout develop
+   merge feature/project-setup
+   branch feature/profile-settings
+   branch feature/user-authentication
+   commit
+   checkout feature/profile-settings
+   commit
+   checkout feature/user-authentication
+   commit
+   checkout develop
+   merge feature/user-authentication
+   checkout feature/profile-settings
+   commit
+   commit
+   checkout develop
+   merge feature/profile-settings
+   branch release/v1.0.0
+   checkout release/v1.0.0
+   commit tag: "v1.0.0"
+   checkout main
+   merge release/v1.0.0 id: "Merge release/v1.0.0 to main"
+   checkout develop
+   merge release/v1.0.0 id: "Merge release/v1.0.0 to develop"
+   checkout main
+   branch hotfix/v1.0.1
+   checkout hotfix/v1.0.1
+   commit tag: "v1.0.1"
+   checkout main
+   merge hotfix/v1.0.1
+   checkout develop
+   merge hotfix/v1.0.1
+```
