@@ -1,6 +1,6 @@
 # github flow
 
-GitHub Flow — подходит для непрерывной интеграции и деплоя (Continuous Integration/Continuous Deployment, CI/CD). Основные принцыпы:
+GitHub Flow — подходит для непрерывной интеграции и деплоя (Continuous Integration/Continuous Deployment, CI/CD). Основные принципы:
   - Фичи создаются от ветки `main`.
   - Все изменения, выполняются в отдельных ветках, которые создаются из ветки main.
   - После завершения работы над фичей, открывается Pull Request (PR) для слияния изменений в ветку main.
