@@ -1,43 +1,40 @@
-# git flow
+# github flow
 
-## Вветки git flow
+GitHub Flow — подходит для непрерывной интеграции и деплоя (Continuous Integration/Continuous Deployment, CI/CD). Основные принцыпы:
+  - Фичи создаются от ветки `main`.
+  - Все изменения, выполняются в отдельных ветках, которые создаются из ветки main.
+  - После завершения работы над фичей, открывается Pull Request (PR) для слияния изменений в ветку main.
+  - Маркировка релизов может быть проведена в любой момент.
+---
+
+## Вветки github flow
 1. **`main`**:
-   - Хранит стабильную версию кода, которая всегда готова для релиза.
-   - После завершения релиза все изменения сливаются сюда.
+   - Хранит стабильную версию кода, которая всегда готова для деплоя в продакшн.
+   - Любые изменения, попадающие в эту ветку должны быть протестированы и проверены.
 
-2. **`develop`**:
-   - Основная ветка для разработки.
-   - Содержит актуальную версию кода с последними изменениями и новыми функциями, которые могут быть нестабильными.
-   - Все фичи и исправления вливаются сюда.
-
-3. **`feature`-ветки** (фичи):
+2. **`feature`-ветки** (фичи):
    - Используются для разработки новой функциональности.
-   - Ответвляются от `develop`.
-   - После завершения разработки создается `pull-request` перед слиянием в `develop`.
+   - Ответвляются от `main`.
+   - После завершения разработки создается `pull-request` перед слиянием в `main`.
+   - Изменения из Pull Request должны пройти код-ревью и автоматические тесты (если настроены CI-инструменты).
+   - Если все проверки пройдены, можно выполнять слияние Pull Request. После этого изменения попадают в ветку main.
    - Название веток: `feature/имя-фичи`.
 
-4. **`release`-ветки** (релизы):
-   - Используются для подготовки нового релиза.
-   - Ответвляются от develop перед релизом.
-   - Сюда можно вносить только исправления багов или минимальные правки.
-   - После завершения добавляется тег релиза и код сливается в main и develop.
-   - Название веток: release/номер-релиза.
-
-5. **`hotfix`-ветки** (хотфиксы):
-   - Используются для исправления критических ошибок в стабильной версии (в main).
+5. **`fix`-ветки** (фиксы):
+   - Используются для исправления ошибок.
    - Ответвляются от main.
-   - После исправления сливаются в main и develop.
-   - Название веток: hotfix/номер-патча.
+   - После исправления создается `pull-request` перед слиянием в `main`.
+   - Изменения из Pull Request должны пройти код-ревью и автоматические тесты (если настроены CI-инструменты).
+   - Если все проверки пройдены, можно выполнять слияние Pull Request. После этого изменения попадают в ветку main.
+   - Название веток: `fix/описание-исправление`.
 
-**Пример `git flow`**
+**Пример `github flow`**
 ```mermaid
   gitGraph
    commit
-   branch develop
-   checkout develop
    branch feature/project-setup
    commit
-   checkout develop
+   checkout main
    merge feature/project-setup
    branch feature/profile-settings
    branch feature/user-authentication
@@ -46,28 +43,17 @@
    commit
    checkout feature/user-authentication
    commit
-   checkout develop
+   checkout main
    merge feature/user-authentication
    checkout feature/profile-settings
    commit
    commit
-   checkout develop
-   merge feature/profile-settings
-   branch release/v1.0.0
-   checkout release/v1.0.0
-   commit tag: "v1.0.0"
    checkout main
-   merge release/v1.0.0 id: "Merge release/v1.0.0 to main"
-   checkout develop
-   merge release/v1.0.0 id: "Merge release/v1.0.0 to develop"
+   merge feature/profile-settings tag: "v1.0.0"
+   branch fix/user-authentication-bug
+   commit
    checkout main
-   branch hotfix/v1.0.1
-   checkout hotfix/v1.0.1
-   commit tag: "v1.0.1"
-   checkout main
-   merge hotfix/v1.0.1
-   checkout develop
-   merge hotfix/v1.0.1
+   merge fix/user-authentication-bug tag: "v1.0.1"
 ```
 
 Ссылки:
