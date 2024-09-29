@@ -69,3 +69,7 @@
    checkout develop
    merge hotfix/v1.0.1
 ```
+
+Ссылки:
+
+- [Рабочий процесс Gitflow Workflow](https://www.atlassian.com/ru/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Git-flow%20—%20это%20устаревшая%20версия,стратегией%20управления%20ветками%20в%20Git.)
