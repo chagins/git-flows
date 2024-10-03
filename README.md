@@ -59,3 +59,4 @@ GitHub Flow — подходит для непрерывной интеграц�
 Ссылки:
 
 - [Рабочий процесс Github flow](https://docs.github.com/en/get-started/using-github/github-flow#following-github-flow)
+- [Сравнение процесов](https://yapro.ru/article/6172)
