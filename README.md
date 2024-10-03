@@ -77,3 +77,4 @@ Git flow — помогает структурировать процесс ра
 Ссылки:
 
 - [Рабочий процесс Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+- [Сравнение процесов](https://yapro.ru/article/6172)
