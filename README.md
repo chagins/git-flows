@@ -151,7 +151,7 @@ Gitlab Flow — подходит для непрерывной интеграц�
    checkout main
    merge fix/user-authentication-bug id: "pull-request user-authentication-bug to main"
    checkout stable-release-v1.0.0
-   cherry-pick id: "user_authentication_bug"
+   cherry-pick id: "user_authentication_bug" tag: "v1.0.1"
    commit tag: "v1.0.1"
 ```
 
